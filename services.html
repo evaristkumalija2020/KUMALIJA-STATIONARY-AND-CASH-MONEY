@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check Services | Kumalija</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f6fb;
+      color: #1c2c44;
+    }
+
+    header {
+      background: #073b78;
+      color: white;
+      padding: 25px 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    header span {
+      color: #ffc928;
+    }
+
+    nav {
+      background: #052b55;
+      padding: 14px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 12px;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: auto;
+      padding: 30px 18px;
+    }
+
+    .heading {
+      text-align: center;
+      color: #073b78;
+    }
+
+    .search {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      margin: 25px 0;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 23px;
+      border-radius: 10px;
+      border-bottom: 4px solid #ffc928;
+      box-shadow: 0 4px 15px #0000000d;
+    }
+
+    .icon {
+      font-size: 38px;
+    }
+
+    .card h3 {
+      color: #073b78;
+    }
+
+    .card button {
+      background: #073b78;
+      color: white;
+      padding: 11px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .card button:hover {
+      background: #0a5ca8;
+    }
+
+    #details {
+      display: none;
+      margin-top: 25px;
+      padding: 22px;
+      background: white;
+      border-radius: 10px;
+      border-left: 5px solid #ffc928;
+    }
+
+    #details h3 {
+      color: #073b78;
+    }
+
+    footer {
+      background: #052b55;
+      color: white;
+      text-align: center;
+      padding: 22px;
+      margin-top: 35px;
+    }
+
+    @media(max-width: 600px) {
+      nav a {
+        display: inline-block;
+        margin: 6px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>KUMALIJA <span>STATIONERY</span></h1>
+  <p>STATIONERY AND CASH POINT</p>
+  <p>Your trusted partner for everyday services.</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="#services">Check Services</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<main class="container">
+
+  <h2 class="heading" id="services">Check Our Services</h2>
+  <p style="text-align:center">
+    Chagua huduma unayohitaji ili kuona maelezo.
+  </p>
+
+  <input
+    type="search"
+    id="search"
+    class="search"
+    placeholder="Search service... mfano Printing, M-Pesa"
+    oninput="filterServices()"
+  >
+
+  <div class="services" id="serviceList">
+
+    <div class="card" data-search="printing uchapishaji">
+      <div class="icon">🖨️</div>
+      <h3>Printing</h3>
+      <p>Uchapishaji wa nyaraka na maandishi.</p>
+      <button onclick="showService('Printing',
+        'Tunatoa huduma ya uchapishaji wa nyaraka. Bei hutegemea idadi ya kurasa na aina ya uchapishaji.')">
+        Check Service
+      </button>
+    </div>
+
+    <div class="card" data-search="photocopy nakala">
+      <div class="icon">📄</div>
+      <h3>Photocopy</h3>
+      <p>Kunakili nyaraka zako.</p>
+      <button onclick="showService('Photocopy',
+        'Tunatoa huduma ya kunakili nyaraka. Wasiliana nasi kwa maelezo ya bei.')">
+        Check Service
+      </button>
+    </div>
+
+    <div class="card" data-search="scanning">
+      <div class="icon">📑</div>
+      <h3>Scanning</h3>
+      <p>Kubadilisha nyaraka kuwa faili za kidijitali.</p>
+      <button onclick="showService('Scanning',
+        'Tunakusaidia kuscan nyaraka zako kulingana na mahitaji yako.')">
+        Check Service
+      </button>
+    </div>
+
+    <div class="card" data-search="mpesa m-pesa">
+      <div class="icon">📱</div>
+      <h3>M-Pesa</h3>
+      <p>Huduma za miamala ya fedha kwa simu.</p>
+      <button onclick="showService('M-Pesa',
+        'Huduma hutegemea upatikanaji wa mfumo na uwakala ulioidhinishwa.')">
+        Check Service
+      </button>
+    </div>
+
+    <div class="card" data-search="airtel money">
+      <div class="icon">💸</div>
+      <h3>Airtel Money</h3>
+      <p>Huduma za kifedha kupitia Airtel Money.</p>
+      <button onclick="showService('Airtel Money',
+        'Wasiliana nasi kuthibitisha huduma inayopatikana.')">
+        Check Service
+      </button>
+    </div>
+
+    <div class="card" data-search="halopesa">
+      <div class="icon">💰</div>
+      <h3>HaloPesa</h3>
+      <p>Huduma za miamala ya HaloPesa.</p>
+      <button onclick="showService('HaloPesa',
+        'Huduma zinategemea upatikanaji wa mfumo husika.')">
+        Check Service
+      </button>
+    </div>
+
+    <div class="card" data-search="mixx yas">
+      <div class="icon">💳</div>
+      <h3>Mixx by Yas</h3>
+      <p>Huduma za fedha kwa simu.</p>
+      <button onclick="showService('Mixx by Yas',
+        'Wasiliana nasi kwa taarifa za huduma zinazopatikana.')">
+        Check Service
+      </button>
+    </div>
+
+    <div class="card" data-search="nmb crdb bank benki">
+      <div class="icon">🏦</div>
+      <h3>NMB / CRDB</h3>
+      <p>Huduma za uwakala wa benki.</p>
+      <button onclick="showService('NMB / CRDB',
+        'Huduma zinapatikana kulingana na benki na uwakala ulioidhinishwa.')">
+        Check Service
+      </button>
+    </div>
+
+  </div>
+
+  <div id="details" aria-live="polite">
+    <h3 id="serviceTitle"></h3>
+    <p id="serviceText"></p>
+    <button onclick="closeService()">Close</button>
+  </div>
+
+  <section id="contact" style="margin-top:35px;text-align:center">
+    <h2 class="heading">Need Help?</h2>
+    <p>Email: evaristkumalija2020@gmail.com</p>
+    <p>Phone: Add your business phone number</p>
+  </section>
+
+</main>
+
+<footer>
+  <p>Kumalija Stationery and Cash Point</p>
+  <p>&copy; <span id="year"></span> All rights reserved.</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+function showService(name, description) {
+  document.getElementById("serviceTitle").textContent = name;
+  document.getElementById("serviceText").textContent = description;
+
+  const details = document.getElementById("details");
+  details.style.display = "block";
+  details.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function closeService() {
+  document.getElementById("details").style.display = "none";
+}
+
+function filterServices() {
+  const query = document.getElementById("search")
+    .value.toLowerCase().trim();
+
+  document.querySelectorAll(".card[data-search]")
+    .forEach(function(card) {
+      card.style.display =
+        card.dataset.search.includes(query) ||
+        card.innerText.toLowerCase().includes(query)
+          ? ""
+          : "none";
+    });
+}
+</script>
+
+</body>
+</html>
