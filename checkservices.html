@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check Services | Kumalija</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2f6fc;
+  color: #17243b;
+}
+
+header {
+  background: #073b78;
+  color: white;
+  padding: 25px 15px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header p {
+  color: #ffc928;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 15px;
+}
+
+h2 {
+  color: #073b78;
+  text-align: center;
+}
+
+.search {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 20px 0;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.services {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.service {
+  background: white;
+  padding: 22px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px #00000010;
+  border-left: 5px solid #ffc928;
+}
+
+.service h3 {
+  color: #073b78;
+}
+
+.service button {
+  background: #073b78;
+  color: white;
+  padding: 11px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.service button:hover {
+  background: #0a579d;
+}
+
+#details {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 25px;
+  display: none;
+  border: 1px solid #d9e3f0;
+}
+
+footer {
+  text-align: center;
+  background: #073b78;
+  color: white;
+  padding: 20px;
+  margin-top: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>KUMALIJA</h1>
+  <p>STATIONERY AND CASH POINT</p>
+  <h2 style="color:white">CHECK OUR SERVICES</h2>
+</header>
+
+<div class="container">
+
+  <h2>Huduma Zetu</h2>
+
+  <input
+    type="text"
+    class="search"
+    id="search"
+    placeholder="Tafuta huduma hapa..."
+    oninput="searchServices()"
+  >
+
+  <div class="services" id="services">
+
+    <div class="service" data-name="printing uchapishaji">
+      <h3>🖨️ Printing</h3>
+      <p>Uchapishaji wa nyaraka na maandishi.</p>
+      <button onclick="showDetails('Printing',
+      'Tunatoa huduma ya uchapishaji wa nyaraka. Bei hutegemea aina na idadi ya kurasa.')">
+        Check Service
+      </button>
+    </div>
+
+    <div class="service" data-name="photocopy">
+      <h3>📄 Photocopy</h3>
+      <p>Kunakili nyaraka zako.</p>
+      <button onclick="showDetails('Photocopy',
+      'Huduma ya kunakili nyaraka. Wasiliana nasi kupata bei.')">
+        Check Service
+      </button>
+    </div>
+
+    <div class="service" data-name="scanning">
+      <h3>📑 Scanning</h3>
+      <p>Kuweka nyaraka kwenye mfumo wa kidijitali.</p>
+      <button onclick="showDetails('Scanning',
+      'Tunakusaidia kuscan nyaraka kulingana na mahitaji yako.')">
+        Check Service
+      </button>
+    </div>
+
+    <div class="service" data-name="mpesa">
+      <h3>📱 M-Pesa</h3>
+      <p>Huduma za miamala ya fedha kwa simu.</p>
+      <button onclick="showDetails('M-Pesa',
+      'Huduma hutegemea upatikanaji wa mfumo na uwakala husika.')">
+        Check Service
+      </button>
+    </div>
+
+    <div class="service" data-name="airtel money">
+      <h3>📲 Airtel Money</h3>
+      <p>Huduma za fedha kupitia Airtel Money.</p>
+      <button onclick="showDetails('Airtel Money',
+      'Wasiliana nasi kuthibitisha huduma inayopatikana.')">
+        Check Service
+      </button>
+    </div>
+
+    <div class="service" data-name="halopesa">
+      <h3>💸 HaloPesa</h3>
+      <p>Huduma za miamala ya HaloPesa.</p>
+      <button onclick="showDetails('HaloPesa',
+      'Huduma hutolewa kulingana na upatikanaji wa mfumo husika.')">
+        Check Service
+      </button>
+    </div>
+
+    <div class="service" data-name="mixx by yas">
+      <h3>💳 Mixx by Yas</h3>
+      <p>Huduma za kifedha za Mixx by Yas.</p>
+      <button onclick="showDetails('Mixx by Yas',
+      'Wasiliana nasi kuthibitisha huduma na masharti husika.')">
+        Check Service
+      </button>
+    </div>
+
+    <div class="service" data-name="nmb crdb benki">
+      <h3>🏦 NMB / CRDB</h3>
+      <p>Huduma za uwakala wa benki, pale zilipoidhinishwa.</p>
+      <button onclick="showDetails('NMB / CRDB',
+      'Huduma hutegemea benki ambayo biashara imesajiliwa kuiwakilisha.')">
+        Check Service
+      </button>
+    </div>
+
+  </div>
+
+  <div id="details" aria-live="polite">
+    <h2 id="serviceName"></h2>
+    <p id="serviceDescription"></p>
+    <button onclick="closeDetails()"
+      style="background:#073b78;color:white;padding:10px;border:0;border-radius:5px;cursor:pointer">
+      Funga
+    </button>
+  </div>
+
+</div>
+
+<footer>
+  <p>Kumalija Stationery and Cash Point</p>
+  <p>© <span id="year"></span> Haki zote zimehifadhiwa.</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+function showDetails(name, description) {
+  document.getElementById("serviceName").textContent = name;
+  document.getElementById("serviceDescription").textContent =
+    description;
+  document.getElementById("details").style.display = "block";
+  document.getElementById("details").scrollIntoView({
+    behavior: "smooth",
+    block: "nearest"
+  });
+}
+
+function closeDetails() {
+  document.getElementById("details").style.display = "none";
+}
+
+function searchServices() {
+  const query = document.getElementById("search")
+    .value.toLowerCase().trim();
+
+  document.querySelectorAll(".service").forEach(function(card) {
+    card.style.display =
+      card.dataset.name.includes(query) ||
+      card.innerText.toLowerCase().includes(query)
+        ? ""
+        : "none";
+  });
+}
+</script>
+
+</body>
+</html>
